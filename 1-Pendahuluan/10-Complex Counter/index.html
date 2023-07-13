@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Complex Counter</title>
+    <!-- React JS -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+
+      function Header({ name }) {
+        return <h1>Hello, {name ? name : "Hai"}!</h1>;
+      }
+
+      function Teks({ angka }) {
+        // if (angka > 9 || angka < 0) {
+        //   angka = "Done!";
+        // }
+        return <span style={{ margin: 20 }}>{angka}</span>;
+      }
+
+      function Tombol({ tulisan, fungsi, angka }) {
+        const disabled =
+          tulisan !== "Reset!"
+            ? angka > 0 && angka < 0
+              ? true
+              : false
+            : angka > 0 || angka < 0
+            ? false
+            : true;
+        const myStyle =
+          tulisan !== "Reset!" ? {} : { margin: 20, display: "block" };
+
+        return (
+          <button onClick={fungsi} disabled={disabled} style={myStyle}>
+            {tulisan}
+          </button>
+        );
+      }
+
+      function HomePage() {
+        const students = ["Gerald", "Adit", "Ibrahim"];
+
+        const [nilai, setHitung] = React.useState(0);
+        function tambahIn() {
+          setHitung(nilai + 1);
+        }
+        function kurangIn() {
+          setHitung(nilai - 1);
+        }
+
+        function resetIn() {
+          setHitung(0);
+        }
+
+        const [counts, setCounts] = React.useState(0);
+        function handleClick() {
+          setCounts(counts + 1);
+        }
+
+        return (
+          <>
+            <Header name="Timothy" />
+            <ul>
+              {students.map((student) => (
+                <li key={student}>{student}</li>
+              ))}
+            </ul>
+
+            <button onClick={handleClick}>{counts}</button>
+            <hr />
+
+            <h2>Latihan React - Complex Counter</h2>
+            <div>
+              <Tombol tulisan="-" fungsi={kurangIn} angka={nilai} />
+              <Teks angka={nilai} />
+              <Tombol tulisan="+" fungsi={tambahIn} angka={nilai} />
+              <br />
+              <br />
+              <Tombol tulisan="Reset!" fungsi={resetIn} angka={nilai} />
+            </div>
+          </>
+        );
+      }
+
+      root.render(<HomePage />);
+    </script>
+  </body>
+</html>
