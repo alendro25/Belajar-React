@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+.game {
+  display: flex;
+}
+
+.square {
+  width: 35px;
+  height: 35px;
+  border: 1px solid black;
+  background: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 105px;
+  height: 105px;
+}
+
+.status {
+  margin-bottom: 5px;
+}
+
+.reset {
+  margin-top: 5px;
+  padding: 2px;
+  color: black;
+  text-decoration: none;
+  border: 1px solid black;
+  border-radius: 2px;
+  background-color: #c5c3c3;
+  display: inline-block;
+}
+.reset:hover {
+  background-color: #b3b0b0;
+}
